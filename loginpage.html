@@ -10,6 +10,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="assets/style.css">
+    <script src="https://kit.fontawesome.com/d32f8209d1.js" crossorigin="anonymous"></script>
     <script src="login.js" type="module"></script>
 </head>
 
@@ -31,10 +32,15 @@
 		<form action="#" method="post" class="login__form">
 			<label for="mail">E-mail</label>
 			<input type="email" name="mail" id="mail">
-			<label for="password">Mot de passe</label>
-			<input type="text" name="password" id="password">
+            <div class="login__iconBlock">
+			    <label for="password">Mot de passe</label>
+                <!-- fa-eye-slash pour barré, fa-eye non barré -->
+                <i class="fa-solid fa-eye-slash login__iconBlock--displayOnOff"></i>
+            </div>
+			<input type="password" name="password" id="password" required>
 			<input type="submit" value="Se connecter">
 		</form>
+        <p class="errorBoarding"></p>
         <a href="#"> Mot de passe oublié ? </a>
         
 	</section>

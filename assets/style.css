@@ -51,7 +51,7 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
+	/*max-width: 1140px;*/
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
@@ -59,10 +59,10 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 10%;
 }
 section {
-	margin: 50px 0
+	margin: 50px 10%;
 }
 
 h1{
@@ -128,6 +128,31 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+.loginClicker, .logoutClicker{
+    color: inherit;
+}
+.logoutClicker{
+    display: none;
+}
+.editHeader{
+    background-color: black;
+    height: 4rem;
+    width: 100vw;
+    color: white;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.editHeader p{
+    margin-left: 1rem;
+}
+/*
+.marginSetting{
+    margin: auto;
+}
+*/
 .callModale{
     position:relative;
     display: flex;
@@ -137,12 +162,16 @@ li:hover {
 .callModale__link{
     position: absolute;
     top: 0.7rem;
-    left: 42rem;
-    display: flex;
+    left: 62%;
+    display: none;
     flex-direction: row;
 }
 .callModale__link p{
     margin-left: 0.5rem;
+}
+
+.callModale__link:hover{
+    cursor: pointer;
 }
 .gallery {
 	width: 100%;
@@ -255,7 +284,9 @@ footer nav ul {
 .login a:hover{
     text-decoration: underline;
 }
-
+.login__iconBlock{
+    margin: 2em 0 1em 0;
+}
 .login input {
 	height: 50px;
 	font-size: 1.2em;
@@ -284,8 +315,22 @@ a {
     color: red;
     font-size: 2rem;
     margin-bottom: 2rem;
+    height: 32px;
 }
 .wrapper--modal{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.589);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+.wrapper--photoForm{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.589);
@@ -307,12 +352,23 @@ a {
     justify-content: center;
     position: relative;
     margin: 10rem;
-    
     max-height: 70%;
+    height: 41rem;
+    width: 39rem;
 }
 .modal__quitIcon{
     position: absolute;
     right: 2rem;
+    top: 2rem;
+}
+.modal__quitIcon--photo{
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+}
+.modal__returnIcon{
+    position: absolute;
+    left: 2rem;
     top: 2rem;
 }
 .modal__title{
@@ -324,11 +380,14 @@ a {
 .modal__icon{
     color: white;
 }
+.modal__icon:hover{
+    cursor: pointer;
+}
 .modal__iconBgColor{
     background-color: black;
     position: absolute;
-    top: 10%;
-    right: 17%;
+    top: 3%;
+    right: 40%;
     height: 1rem;
     width: 1rem;
     padding: 0.2rem;
@@ -349,6 +408,49 @@ a {
     padding-bottom: 2rem;
     overflow-x:hidden;
 }
+.modal__inbox{
+    height: 80%;
+    width: 80%;
+    margin: 4rem;
+    margin-bottom: 2rem;
+    border-bottom: solid 2px #1D6154;
+    padding-bottom: 1rem;
+}
+.modal__inbox form{
+    text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+.modal__inbox input{
+    height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.modal__inbox label{
+    margin: 2em 0 1em 0;
+}
+.modal__photoAdding{
+    height: 10rem;
+    width: 100%;
+    background-color: #E8F1F6;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.modal__addingIcon{
+    color: #B9C5CC;
+    height: 30%;
+    width: 30%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 .modal__figure{
     position: relative;
 }
@@ -368,4 +470,16 @@ a {
 }
 .modal__button:hover{
     box-shadow: 0 0 5px #1D6154;
+}
+.modal__button--validate{
+    background-color: #A7A7A7;
+    width: 40%;
+    margin-bottom: 2rem;
+}
+.modal__button--adding{
+    background-color: #CBD6DC;
+    margin-bottom: 0;
+    padding: 0.5rem;
+    color: black;
+    width: 30%;
 }

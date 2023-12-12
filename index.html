@@ -8,22 +8,31 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+    <script src="https://kit.fontawesome.com/d32f8209d1.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./assets/style.css">
     <script src="main.js" type="module"></script>
 </head>
+
 <body>
-<header>
+    <div class="editHeader">
+        <i class="fa-regular fa-pen-to-square"></i>
+        <p> Mode édition </p>
+    </div>
+
+<header class="marginSetting">
+    
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li><a href="index.html">projets</a></li>
 			<li> <a href="#">contact</a></li>
-			<li><a href="loginpage.html">login</a></li>
+			<li><a href="loginpage.html" class="loginClicker">login</a></li>
+            <li><a href="#" class="logoutClicker">logout</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
 </header>
-<main>
+<main class="marginSetting">
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
@@ -36,11 +45,14 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-        
-		<div class="gallery">
-			
-		</div>
+		<div class="callModale">
+            <h2>Mes Projets</h2>
+            <div class="callModale__link editor">
+                <i class="fa-regular fa-pen-to-square"></i>
+                <p> <span id="OpenModal"> Modifier </span> </p>
+            </div>
+        </div>
+		<div class="gallery"></div> <!-- fill with fetching-->
 	</section>
 	<section id="contact">
 		<h2>Contact</h2>
@@ -56,8 +68,37 @@
 		</form>
 	</section>
 </main>
+<aside class="wrapper--modal">
+    <div class="modal">
+        <i class="fa-solid fa-xmark modal__quitIcon"></i>
+        <h1 class="modal__title"> Galerie photo </h1>
+        <div class="modal__gallery"></div>
+        <button class="modal__button" id="photoFormOpener"> Ajouter une photo </button>
+    </div>
+</aside>
+<aside class="wrapper--photoForm">
+    <div class="modal">
+        <i class="fa-solid fa-arrow-left modal__returnIcon"></i>
+        <i class="fa-solid fa-xmark modal__quitIcon--photo"></i>
+        <h1 class="modal__title"> Ajouter photo </h1>
+        <div class="modal__inbox">
+            <div class="modal__photoAdding">
+                <i class="fa-regular fa-image fa-6x modal__addingIcon"></i>
+                <button class="modal__button modal__button--adding"> + Ajouter photo </button>
+                <p> jpg, png : 4mo max</p>
+            </div>
+            <form action="#" method="post" class="photoForm__form">
+                <label for="title">Titre</label>
+			    <input type="text" name="title" id="title" required>
+			    <label for="category">Catégorie</label>
+			    <input type="text" name="category" id="category" required>
+            </form>
+        </div>
+        <button class="modal__button modal__button--validate"> Valider </button>
+    </div>
+</aside>
 
-<footer>
+<footer class="marginSetting">
 	<nav>
 		<ul>
 			<li>Mentions Légales</li>

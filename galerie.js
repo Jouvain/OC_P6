@@ -49,7 +49,7 @@ export function generateFilterTags(listeWorks){
                 generateGallery(listeWorks)
             }
             else{
-                const categoryFilter = listeWorks.filter((element) => element.category.name == buttonTag.value)
+                const categoryFilter = listeWorks.filter((element) => element.category.name === buttonTag.value)
                 eraseGallery()
                 generateGallery(categoryFilter)
             }}
@@ -62,7 +62,6 @@ export function generateModalGallery(listeWorks){
     const modalGallery = document.querySelector(".modal__gallery")
     const figures = document.querySelectorAll(".modal__gallery figure")
     figures.forEach((element) => element.remove())
-    
     listeWorks.forEach(function(element){
         const container = document.createElement("figure")
         container.setAttribute("class", "modal__figure")
@@ -73,13 +72,34 @@ export function generateModalGallery(listeWorks){
         const iconBgColor = document.createElement("div")
         iconBgColor.setAttribute("class", "modal__iconBgColor")
         container.appendChild(iconBgColor)
-
-
-
         const icon = document.createElement("i")
         icon.setAttribute("class", "fa-solid fa-trash-can modal__icon")
+        icon.value = element.id
         iconBgColor.appendChild(icon)
-        
+        iconBgColor.addEventListener("click", (event)=>{
+            console.log(event.target.value)
+            const targetId = event.target.value
+            const checkedToken = window.localStorage.getItem("key")
+            console.log(checkedToken)
+            fetch(`http://localhost:5678/api/works/${targetId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${checkedToken}`}
+            })
+            .then((response) =>{
+                if(response.ok){
+                    console.log(response.status)
+                    container.remove()
+                    const index = listeWorks.indexOf(element)
+                    listeWorks.splice(index, 1)
+                    console.log(listeWorks)
+                    generateGallery(listeWorks)
+                }
+                else{
+                    console.log("PERDU")
+                }
+            })
+        })
         }
     )
 }

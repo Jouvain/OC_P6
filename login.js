@@ -1,11 +1,11 @@
-const errorBoard = document.createElement("p")
+const errorBoard = document.querySelector(".errorBoarding")
 
 const loginForm = document.querySelector(".login__form")
 loginForm.addEventListener("submit", function(event){
     event.preventDefault()
     
-    errorBoard.setAttribute("class", "errorBoarding")
-    errorBoard.remove()
+    
+    errorBoard.innerText=""
     const futureBodyFetch = {
         email: event.target.querySelector("[name=mail]").value,
         password: event.target.querySelector("[name=password]").value
@@ -17,23 +17,37 @@ loginForm.addEventListener("submit", function(event){
         headers: {"Content-Type": "application/json"},
         body: bodyFetch
     })
-    .then(async (Response) => {
-        if (Response.ok){
-            console.log(Response.status)
-            errorBoard.remove()
-            location.assign("/editpage.html")
+    .then(async (response) => {
+        if (response.ok){
+            console.log(response.status)
+            const reader = await response.json()
+            const activeToken = reader.token
+            window.localStorage.setItem("key", activeToken)
+            console.log(activeToken)
+            location.assign("/index.html")
         }
         else {
-            errorBoard.remove()
-            console.log(Response.status)
-            const message = Response.status === 401 ? "Mauvais mot de passe" : "Utilisateur inconnu"
+            
+            console.log(response.status)
+            const message = response.status === 401 ? "Mauvais mot de passe" : "Utilisateur inconnu"
             errorBoard.innerText = message
-            loginForm.appendChild(errorBoard)
         }
     })
-    
-    
-    
 })
 // sophie.bluel@test.tld
 // S0phie
+
+const displayIcon = document.querySelector(".login__iconBlock--displayOnOff")
+const passwordInput = document.getElementById("password")
+displayIcon.addEventListener("click", ()=>{
+    if(displayIcon.classList[2] === "fa-eye"){
+        displayIcon.classList.remove("fa-eye")
+        displayIcon.classList.add("fa-eye-slash")
+        passwordInput.setAttribute("type", "password")  
+    }
+    else{
+        displayIcon.classList.remove("fa-eye-slash")
+        displayIcon.classList.add("fa-eye")
+        passwordInput.setAttribute("type", "text") 
+    }
+})

@@ -1,30 +1,24 @@
-import {generateGallery, eraseGallery, generateFilterTags, generateModalGallery} from "./galerie.js"
 
-
-
-const reponse = await fetch("http://localhost:5678/api/works")
-const works = await reponse.json()
-const buttonFilter = document.getElementById("workCategory")
-
-
-
-generateGallery(works)
-
-generateFilterTags(works)
-
-
-
-
-const wrapperModal = document.querySelector(".wrapper--modal")
-const modalOpener = document.getElementById("OpenModal")
-const modalCloser = document.querySelector(".modal__quitIcon")
-modalOpener.addEventListener("click", () => {
-    wrapperModal.style.display = "flex"
-    generateModalGallery(works)
-})
-modalCloser.addEventListener("click", ()=>{
-    wrapperModal.style.display = "none"
-})
-
-
+export function revealEditMode(key){
+    const modalReveler = document.querySelector(".callModale__link")
+    const logoutClicker = document.querySelector(".logoutClicker")
+    const loginClicker = document.querySelector(".loginClicker")
+    const editHeader = document.querySelector(".editHeader")
+    if(key === null){
+        modalReveler.style.display="none"
+        logoutClicker.style.display="none"
+        editHeader.style.display="none"
+        console.log("NO EDIT")
+    }
+    else{
+        loginClicker.style.display="none"
+        modalReveler.style.display="flex"
+        logoutClicker.style.display="inherit"
+        editHeader.style.display="flex"
+    }
+    logoutClicker.addEventListener("click", ()=>{
+        window.localStorage.removeItem("key")
+        location.assign("/index.html")
+    })
+}
 
