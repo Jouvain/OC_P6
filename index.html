@@ -83,15 +83,22 @@
         <h1 class="modal__title"> Ajouter photo </h1>
         <div class="modal__inbox">
             <div class="modal__photoAdding">
-                <i class="fa-regular fa-image fa-6x modal__addingIcon"></i>
+                <img src="assets/icons/image-regular.svg" class="picturingChoice">
+                <!--<i class="fa-regular fa-image fa-6x modal__addingIcon"></i>-->
                 <button class="modal__button modal__button--adding"> + Ajouter photo </button>
+                <input type="file" id="choosedPicture" name="choosedPicture" accept="png,jpg,jpeg">
                 <p> jpg, png : 4mo max</p>
             </div>
             <form action="#" method="post" class="photoForm__form">
                 <label for="title">Titre</label>
 			    <input type="text" name="title" id="title" required>
 			    <label for="category">Catégorie</label>
-			    <input type="text" name="category" id="category" required>
+                <select name="category" id="category">
+                    <option value=""> </option>
+                    <!-- générer options en JS -->
+                </select>
+                <!--<input type="text" name="category" id="category" required>-->
+			    
             </form>
         </div>
         <button class="modal__button modal__button--validate"> Valider </button>

@@ -352,8 +352,8 @@ a {
     justify-content: center;
     position: relative;
     margin: 10rem;
-    max-height: 70%;
-    height: 41rem;
+    
+    
     width: 39rem;
 }
 .modal__quitIcon{
@@ -386,7 +386,7 @@ a {
 .modal__iconBgColor{
     background-color: black;
     position: absolute;
-    top: 3%;
+    top: 8%;
     right: 40%;
     height: 1rem;
     width: 1rem;
@@ -428,19 +428,45 @@ a {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+.modal__inbox select{
+    height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    background-color: white;
+}
 .modal__inbox label{
     margin: 2em 0 1em 0;
 }
 .modal__photoAdding{
-    height: 10rem;
-    width: 100%;
+    
+    
     background-color: #E8F1F6;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    position: relative;
+    padding: 1rem;
 }
+.modal__photoAdding img{
+    height: 4rem;
+    width: 4rem;
+    color: #B9C5CC;
+}
+.modal__photoAdding p{
+    margin-top: 3rem;
+}
+.modal__photoAdding input{
+    position: absolute;
+    top: 55%;
+    right: 35%;
+    width: 30%;
+    height: 20%;
+    opacity: 0;
+}
+
 .modal__addingIcon{
     color: #B9C5CC;
     height: 30%;
@@ -482,4 +508,7 @@ a {
     padding: 0.5rem;
     color: black;
     width: 30%;
+    position: absolute;
+    top: 55%;
+    right: 35%;
 }
