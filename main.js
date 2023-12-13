@@ -60,9 +60,8 @@ inputAddPicture.addEventListener("change", (event)=>{
 generateSelectOptions(works)
 
 const buttonValidate = document.querySelector(".modal__button--validate")
-buttonValidate.addEventListener("click", ()=>{
+buttonValidate.addEventListener("click", function(){
     const formData = new FormData()
-    const image = document.querySelector(".picturingChoice")
     const title = document.getElementById("title")
     const category = document.getElementById("category")
     formData.append("image", picture)
@@ -79,4 +78,13 @@ buttonValidate.addEventListener("click", ()=>{
         headers: {Authorization: `Bearer ${checkedToken}`},
         body: formData,
     })
+    .then(async function(){
+        const newReponse = await fetch("http://localhost:5678/api/works")
+        const newWorks = await newReponse.json()
+        generateGallery(newWorks)
+        generateModalGallery(newWorks)
+    }
+        
+    )
+    
 })
