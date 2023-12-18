@@ -1,0 +1,25 @@
+* login.js
+affichage/dissimulation du password simplifiée (moins de variables)
+commentaire et simplification (minus variables) de la gestion d'évènement du loginform
+
+*editpage.js
+revealEditMode => minus variables pour DOM-récup 
+revealEditMode => variable pour display au lieu de répétition de style
+revealEditMode => param = "token" et plus "key"
+EDITPAGE ==> DEPRECIE ==> fusion en page unique de fonctions
+generateSelectOptions => Set généré en appel de fonction dédiée
+
+*galerie.js
+==> création fonction dédiée à la génération de set
+generateFilterTags => commentaires
+generateFilterTags => réduction via appel fonction dédiée Set
+generateFilterTags => erase mutualisé au click
+generateModalGallery => commentaires
+GALERIE ==> RENOMMEE ==> "Fonctions"
+
+*fonctions.js
+==> utilisée en import global as module.appelfonction()
+
+*main.js
+==> création fonction dédiée gestion du dispay
+gestion d'évènements boutons => commenté, indenté, minus variables

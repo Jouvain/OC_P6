@@ -1,22 +1,23 @@
 
-export function revealEditMode(key){
-    const modalReveler = document.querySelector(".callModale__link")
-    const logoutClicker = document.querySelector(".logoutClicker")
-    const loginClicker = document.querySelector(".loginClicker")
-    const editHeader = document.querySelector(".editHeader")
-    if(key === null){
-        modalReveler.style.display="none"
-        logoutClicker.style.display="none"
-        editHeader.style.display="none"
-        console.log("NO EDIT")
+
+//affiche/cache les éléments d'édition selon présence/absence du token
+export function revealEditMode(token){
+    let displayPro = ""
+    let displayFree = ""
+    if(token === null){
+        displayPro = "none"
+        displayFree = "flex"
     }
     else{
-        loginClicker.style.display="none"
-        modalReveler.style.display="flex"
-        logoutClicker.style.display="inherit"
-        editHeader.style.display="flex"
+        displayPro = "flex"
+        displayFree ="none"
     }
-    logoutClicker.addEventListener("click", ()=>{
+    document.querySelector(".callModale__link").style.display=displayPro
+    document.querySelector(".logoutClicker").style.display=displayPro
+    document.querySelector(".editHeader").style.display=displayPro
+    document.querySelector(".loginClicker").style.display=displayFree
+
+    document.querySelector(".logoutClicker").addEventListener("click", ()=>{
         window.localStorage.removeItem("key")
         location.assign("/index.html")
     })
@@ -24,10 +25,7 @@ export function revealEditMode(key){
 
 export function generateSelectOptions(listeWorks){
     //création d'un set pour lister les catégories sans doublon
-    const categoriesSet = new Set()
-    listeWorks.forEach((element) =>{
-        categoriesSet.add(element.category.name)
-    })
+    const categoriesSet = generateSet(listeWorks)
     //récupération du "select" récipiendaire
     const formulaire = document.getElementById("category")
     //ajout des catégories au select

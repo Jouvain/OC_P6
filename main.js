@@ -1,100 +1,65 @@
-import {generateGallery, generateFilterTags, generateModalGallery} from "./galerie.js"
-import { revealEditMode, generateSelectOptions } from "./editpage.js"
+import * as module from "./fonctions.js"
 
-/*
-const storedToken = window.localStorage.getItem("key")
-const storedWorks = window.localStorage.getItem("worklist")
-console.log(storedToken)
-let works =""
-if(storedWorks === null){
-    const reponse = await fetch("http://localhost:5678/api/works")
-    works = await reponse.json()
-}
-else{
-    works = await storedWorks.json()
-}
-console.log(storedWorks)
-console.log(works)
-*/
-
+// récupération du token et des travaux
 const storedToken = window.localStorage.getItem("key")
 const reponse = await fetch("http://localhost:5678/api/works")
 const works = await reponse.json()
 
-
-
-
-generateGallery(works)
-
+// génération de la page
+module.generateGallery(works)
 if(storedToken === null){
     generateFilterTags(works)
 }
+module.revealEditMode(storedToken)
 
-
-revealEditMode(storedToken)
-
-const wrapperModal = document.querySelector(".wrapper--modal")
-const modalOpener = document.getElementById("OpenModal")
-const modalCloser = document.querySelector(".modal__quitIcon")
-const photoFormOpener = document.getElementById("photoFormOpener")
+// récupération d'éléments du DOM réutilisés
 const wrapperPhotoForm = document.querySelectorAll(".photoForm")
-const title = document.querySelector(".modal__title")
 const button = document.getElementById("photoFormOpener")
-const photFormReturn = document.querySelector(".modal__returnIcon")
+let picture =""
 
-
+// gestion d'évènement pour les boutons d'édition (modale comprise)
+const modalOpener = document.getElementById("OpenModal")
 modalOpener.addEventListener("click", () => {
-    wrapperModal.style.display = "flex"
-    generateModalGallery(works)
-    title.innerText="Galerie photo"
+    document.querySelector(".wrapper--modal").style.display = "flex"
+    module.generateModalGallery(works)
+    document.querySelector(".modal__title").innerText="Galerie photo"
     button.innerText="Ajouter une photo"
     document.querySelector(".modal__gallery").style.display = "grid"
 })
+const modalCloser = document.querySelector(".modal__quitIcon")
 modalCloser.addEventListener("click", ()=>{
-    wrapperModal.style.display = "none"
-    wrapperPhotoForm.forEach((element)=>{
-        element.style.display = "none"
-    })
+    document.querySelector(".wrapper--modal").style.display = "none"
+    module.wrapUnwrap(wrapperPhotoForm, "none")
     button.classList.remove("modal__button--validate")
-    deactivateButtonValidate(button)
+    module.deactivate(button)
 })
-
-
+const photoFormOpener = document.getElementById("photoFormOpener")
 photoFormOpener.addEventListener("click", ()=>{
-    wrapperPhotoForm.forEach((element)=>{
-        element.style.display = "flex"
-    })
+    module.wrapUnwrap(wrapperPhotoForm, "flex")
     document.querySelector(".modal__gallery").style.display = "none"
-    title.innerText="Ajout photo"
+    document.querySelector(".modal__title").innerText="Ajout photo"
     button.innerText="Valider"
     button.classList.add("modal__button--validate")
     activateButtonValidate(button)
+    module.generateSelectOptions(works)
 })
-
+const photFormReturn = document.querySelector(".modal__returnIcon")
 photFormReturn.addEventListener("click", ()=>{
-    wrapperPhotoForm.forEach((element)=>{
-        element.style.display = "none"
-    })
+    module.wrapUnwrap(wrapperPhotoForm, "none")
     document.querySelector(".modal__gallery").style.display = "grid"
-    title.innerText="Galerie photo"
+    document.querySelector(".modal__title").innerText="Galerie photo"
     button.innerText="Ajouter photo"
     button.classList.remove("modal__button--validate")
-    deactivateButtonValidate(button)
+    module.deactivate(button)
 })
-
 const inputAddPicture = document.getElementById("choosedPicture")
 const picturingChoice = document.querySelector(".picturingChoice")
-let picture =""
 inputAddPicture.addEventListener("change", (event)=>{
-    console.log(event.target.value)
     picturingChoice.src = URL.createObjectURL(event.target.files[0])
     picture = event.target.files[0]
 })
 
-generateSelectOptions(works)
-
-const buttonValidate = document.querySelector(".modal__button--validate")
-
+// FONCTION LOCALE
 function activateButtonValidate(element){
     element.addEventListener("click", function(){
         const formData = new FormData()
@@ -103,11 +68,6 @@ function activateButtonValidate(element){
         formData.append("image", picture)
         formData.append("title", title.value)
         formData.append("category", category.value)
-        console.log(formData)
-        console.log(title.value)
-        console.log(category.value)
-        console.log(picturingChoice.src)
-        console.log(picture)
         const checkedToken = window.localStorage.getItem("key")
         fetch("http://localhost:5678/api/works", {
             method: "POST",
@@ -115,10 +75,6 @@ function activateButtonValidate(element){
             body: formData,
         })
         .then((response)=>{
-            //const newReponse = await fetch("http://localhost:5678/api/works")
-            //const newWorks = await newReponse.json()
-            //generateGallery(newWorks)
-            //generateModalGallery(newWorks)
             wrapperPhotoForm.forEach((element)=>{
                 element.style.display = "none"
             })
@@ -126,24 +82,25 @@ function activateButtonValidate(element){
             document.querySelector(".modal__gallery").style.display = "grid"
             return response.json()
         }).then((data)=>{
-            console.log(data)
             works.push(data)
-            generateGallery(works)
-            generateModalGallery(works)
+            module.generateGallery(works)
+            module.generateModalGallery(works)
+            /* TEST (exploration du localStorage)
             let stringWorks = works
             stringWorks.forEach((element)=>{
                 element = JSON.stringify(element)
             })
             window.localStorage.setItem("worklist", stringWorks)
+            */
         })   
     })
 }
 
-function deactivateButtonValidate(element){
-    element.removeEventListener("click", function(){})
-}
 
-// TEST //
+
+
+/*
+// TEST (exploration du localStorage) //
 const test = document.getElementById("test")
 test.addEventListener("click", ()=>{
     console.log(works)
@@ -152,32 +109,5 @@ test.addEventListener("click", ()=>{
     console.log(worklist)
     console.log(worklist[1])
 })
-
-/*
-buttonValidate.addEventListener("click", function(){
-    const formData = new FormData()
-    const title = document.getElementById("title")
-    const category = document.getElementById("category")
-    formData.append("image", picture)
-    formData.append("title", title.value)
-    formData.append("category", category.value)
-    console.log(formData)
-    console.log(title.value)
-    console.log(category.value)
-    console.log(picturingChoice.src)
-    console.log(picture)
-    const checkedToken = window.localStorage.getItem("key")
-    fetch("http://localhost:5678/api/works", {
-        method: "POST",
-        headers: {Authorization: `Bearer ${checkedToken}`},
-        body: formData,
-    })
-    .then(async function(){
-        const newReponse = await fetch("http://localhost:5678/api/works")
-        const newWorks = await newReponse.json()
-        generateGallery(newWorks)
-        generateModalGallery(newWorks)
-        wrapperPhotoForm.style.display = "none"
-    })   
-})
 */
+
