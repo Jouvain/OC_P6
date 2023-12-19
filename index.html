@@ -73,8 +73,8 @@
         <i class="fa-solid fa-xmark modal__quitIcon"></i>
         <i class="fa-solid fa-arrow-left modal__returnIcon photoForm"></i>
         <h1 class="modal__title"> <!--titre à injecter --> </h1>
-        <div class="modal__gallery"></div> <!--injecter photos et icones -->
-        <div class="modal__inbox photoForm">
+        <div class="modal__gallery deleteForm"></div> <!--injecter photos et icones -->
+        <div class="modal__inbox photoForm ">
             <div class="modal__photoAdding">
                 <img src="assets/icons/image-regular.svg" class="picturingChoice">
                 <button class="modal__button modal__button--adding"> + Ajouter photo </button>
@@ -85,14 +85,15 @@
                 <label for="title">Titre</label>
 			    <input type="text" name="title" id="title" required>
 			    <label for="category">Catégorie</label>
-                <select name="category" id="category">
+                <select name="category" id="category" required>
                     <option value=""> </option>
                     <!-- générer options en JS -->
                 </select>  
             </form>
         </div>
-        <button class="modal__button" id="photoFormOpener" > <!--valeur à injecter --> </button>
-    </div>
+        <button class="modal__button deleteForm" id="photoFormOpener" > Ajouter une photo </button>
+        <button class="modal__button modal__button--validate photoForm"> Valider </button>
+    </dconsiv>
 </aside>
 
 <footer class="marginSetting">

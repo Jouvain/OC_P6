@@ -25,12 +25,12 @@ export function eraseGallery(){
 
 // création set pour lister catégories sans doublons
 export function generateSet(listeWorks){
-    const categoriesSet = new Set()
-    categoriesSet.add("Tous") 
+    const set = new Set()
+    set.add("Tous") 
     listeWorks.forEach(function(element){
-        categoriesSet.add(element.category.name)
+        set.add(element.category.name)
     })
-    return categoriesSet
+    return set
 }
 
 // génération des boutons-filtres
@@ -161,45 +161,6 @@ export function wrapUnwrap (elementMultiple, flexOrNone){
     })
 }
 
-// désactive la gestion de l'évènement clic
-export function deactivate(element){
-    element.removeEventListener("click", function(){})
-}
 
-// gère le requêtage via bouton d'ajout
-export function activateButtonValidate(button, picture, works){
-    button.addEventListener("click", function(){
-        //création de la charge utile + récupération d'authorisation
-        const formData = new FormData()
-        const title = document.getElementById("title")
-        const category = document.getElementById("category")
-        formData.append("image", picture)
-        formData.append("title", title.value)
-        formData.append("category", category.value)
-        const checkedToken = window.localStorage.getItem("key")
-        fetch("http://localhost:5678/api/works", {
-            method: "POST",
-            headers: {Authorization: `Bearer ${checkedToken}`},
-            body: formData,
-        })// SI OK retour graphique à la modale
-        .then((response)=>{
-            document.querySelectorAll(".photoForm").forEach((element)=>{
-                element.style.display = "none"
-            })
-            button.innerText="Ajouter photo"
-            document.querySelector(".modal__gallery").style.display = "grid"
-            return response.json()
-        }).then((data)=>{// PUIS actualisation des travaux et ré-affichage
-            works.push(data)
-            generateGallery(works)
-            generateModalGallery(works)
-            /* TEST (exploration du localStorage)
-            let stringWorks = works
-            stringWorks.forEach((element)=>{
-                element = JSON.stringify(element)
-            })
-            window.localStorage.setItem("worklist", stringWorks)
-            */
-        })   
-    })
-}
+
+
