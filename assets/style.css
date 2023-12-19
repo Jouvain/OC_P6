@@ -80,7 +80,10 @@ h1 > span {
 	letter-spacing: 0.1em;
 ;
 }
-
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
 h2{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -127,51 +130,6 @@ li:hover {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
-}
-.loginClicker, .logoutClicker{
-    color: inherit;
-}
-.logoutClicker{
-    display: none;
-}
-.editHeader{
-    background-color: black;
-    height: 4rem;
-    width: 100vw;
-    color: white;
-    display: none;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-.editHeader p{
-    margin-left: 1rem;
-}
-/*
-.marginSetting{
-    margin: auto;
-}
-*/
-.callModale{
-    position:relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-.callModale__link{
-    position: absolute;
-    top: 0.7rem;
-    left: 62%;
-    display: none;
-    flex-direction: row;
-}
-.callModale__link p{
-    margin-left: 0.5rem;
-}
-
-.callModale__link:hover{
-    cursor: pointer;
 }
 .gallery {
 	width: 100%;
@@ -234,81 +192,109 @@ footer nav ul {
 	margin: 2em
 }
 
-/* ajout de style */
+/**************** EDIT MODE ********************/
+.loginClicker, .logoutClicker{
+    color: inherit;
+}
+.logoutClicker{
+    display: none;
+}
+.editHeader{
+    background-color: black;
+    height: 4rem;
+    width: 100vw;
+    color: white;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    p {
+        margin-left: 1rem;
+    }
+}
+.callModale{
+    position:relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .callModale__link{
+    position: absolute;
+    top: 0.7rem;
+    left: 62%;
+    display: none;
+    flex-direction: row;
+        p {
+            margin-left: 0.5rem;
+        }
+    }
+    .callModale__link:hover{
+    cursor: pointer;
+    }
+}
+
+
+/**************** FILTRES ***************/
 .filterTags {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    button {
+        margin: 1rem;
+        border-radius: 3rem;
+        border : 1px solid #1D6154;
+        background-color: white;
+        font-family: 'Syne';
+        padding: 0.7rem;
+        color: #1D6154;
+        transition: all 0.3s;
+    }
+    button:hover {
+        box-shadow: 0 0 5px #1D6154;
+    }
+    button:focus {
+        color: white;
+        background-color: #1D6154;
+    }
 }
 
-.filterTags button {
-    margin: 1rem;
-    border-radius: 3rem;
-    border : 1px solid #1D6154;
-    background-color: white;
-    font-family: 'Syne';
-    padding: 0.7rem;
-    color: #1D6154;
-    transition: all 0.3s;
-}
-.filterTags button:hover {
-    box-shadow: 0 0 5px #1D6154;
-}
-.filterTags button:focus {
-    color: white;
-    background-color: #1D6154;
-}
-
+/************ LOGIN PAGE ***************/
 .login {
 	width: 50%;
     margin: auto;
-}
-.login > * {
-	text-align: center;
-
-}
-.login h2{
-	margin-bottom: 20px;
-}
-.login form {
-	text-align: left;
-	margin-top:30px;
-	display: flex;
-	flex-direction: column;
-}
-.login a{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-.login a:hover{
-    text-decoration: underline;
-}
-.login__iconBlock{
+    h2 {
+        margin-bottom: 20px;
+    }
+    form {
+        text-align: left;
+        margin-top:30px;
+        display: flex;
+        flex-direction: column;
+    }
+    a {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    label {
+        margin: 2em 0 1em 0;
+    }
+    input {
+        height: 50px;
+        font-size: 1.2em;
+        border: none;
+        box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    }
+    input[type="submit"]:hover{
+        box-shadow: 0 0 5px #1D6154;
+    }
+    .login__iconBlock{
     margin: 2em 0 1em 0;
-}
-.login input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-.login label {
-	margin: 2em 0 1em 0;
-}
-.login textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-.login input[type="submit"]:hover {
-    box-shadow: 0 0 5px #1D6154;
-}
-
-a {
-    color: inherit;
-    text-decoration: inherit;
-}
-.errorBoarding{
+    }
+    .errorBoarding{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -316,7 +302,15 @@ a {
     font-size: 2rem;
     margin-bottom: 2rem;
     height: 32px;
+    }
 }
+.login > * {
+	text-align: center;
+
+}
+
+
+/*********** MODALE ****************/
 .wrapper--modal{
     width: 100vw;
     height: 100vh;
@@ -342,38 +336,107 @@ a {
     justify-content: center;
     position: relative;
     margin: 10rem;
-    
     height: 41rem;
     width: 39rem;
-}
-.modal__quitIcon{
+    .modal__quitIcon{
     position: absolute;
     right: 2rem;
     top: 2rem;
-}
-.modal__quitIcon--photo{
-    position: absolute;
-    right: 2rem;
-    top: 2rem;
-}
-.modal__returnIcon{
+    }
+    .modal__returnIcon{
     position: absolute;
     left: 2rem;
     top: 2rem;
-}
-.modal__title{
+    }
+    .modal__title{
     color: #1D6154;
     font-size: 1.5rem;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 3rem;
-}
-.modal__icon{
+    }
+    .modal__gallery{
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    margin: 4rem;
+    border-bottom: solid 2px #1D6154;
+    padding-bottom: 2rem;
+    overflow-x:hidden;
+        .modal__figure{
+            position: relative;
+            img {
+                object-fit: contain;
+                height: 6rem;
+                width: 4rem;
+            } 
+        }
+    }
+    .modal__inbox{
+    height: 80%;
+    width: 80%;
+    margin: 4rem;
+    margin-bottom: 2rem;
+    border-bottom: solid 2px #1D6154;
+    padding-bottom: 1rem;
+    display: none;
+    flex-direction: column;
+        form {
+            text-align: left;
+            margin-top:30px;
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            height: 50px;
+            font-size: 1.2em;
+            border: none;
+            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+        }
+        select {
+            height: 50px;
+            font-size: 1.2em;
+            border: none;
+            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+            background-color: white;
+        }
+        label {
+            margin: 2em 0 1em 0;
+        }
+        .modal__photoAdding{
+            background-color: #E8F1F6;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            position: relative;
+            padding: 1rem;
+                img {
+                    height: 4rem;
+                    width: 4rem;
+                    color: #B9C5CC;
+                }
+                p {
+                    margin-top: 3rem;
+                }
+                input {
+                    position: absolute;
+                    top: 55%;
+                    right: 35%;
+                    width: 30%;
+                    height: 20%;
+                    opacity: 0;
+                }
+        }
+    }
+    .modal__icon{
     color: white;
-}
-.modal__icon:hover{
+    }
+    .modal__icon:hover{
     cursor: pointer;
-}
-.modal__iconBgColor{
+    }
+    .modal__iconBgColor{
     background-color: black;
     position: absolute;
     top: 8%;
@@ -386,97 +449,8 @@ a {
     display: flex;
     justify-content: center;
     align-content: center;
-}
-.modal__gallery{
-    height: 80%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 1rem;
-    margin: 4rem;
-    border-bottom: solid 2px #1D6154;
-    padding-bottom: 2rem;
-    overflow-x:hidden;
-}
-.modal__inbox{
-    height: 80%;
-    width: 80%;
-    margin: 4rem;
-    margin-bottom: 2rem;
-    border-bottom: solid 2px #1D6154;
-    padding-bottom: 1rem;
-    display: none;
-    flex-direction: column;
-}
-.modal__inbox form{
-    text-align: left;
-	margin-top:30px;
-	display: flex;
-	flex-direction: column;
-}
-.modal__inbox input{
-    height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-.modal__inbox select{
-    height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-    background-color: white;
-}
-.modal__inbox label{
-    margin: 2em 0 1em 0;
-}
-.modal__photoAdding{
-    
-    
-    background-color: #E8F1F6;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    position: relative;
-    padding: 1rem;
-}
-.modal__photoAdding img{
-    height: 4rem;
-    width: 4rem;
-    color: #B9C5CC;
-}
-.modal__photoAdding p{
-    margin-top: 3rem;
-}
-.modal__photoAdding input{
-    position: absolute;
-    top: 55%;
-    right: 35%;
-    width: 30%;
-    height: 20%;
-    opacity: 0;
-}
-
-.modal__addingIcon{
-    color: #B9C5CC;
-    height: 30%;
-    width: 30%;
-    padding: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-.modal__figure{
-    position: relative;
-}
-.modal__figure img{
-    object-fit: contain;
-    height: 6rem;
-    width: 4rem;
-}
-.modal__button{
+    }
+    .modal__button{
     color: white;
     background-color: #1D6154;
     border-radius: 3rem;
@@ -484,16 +458,16 @@ a {
     padding: 1rem;
     transition: all 0.3s;
     margin-bottom: 2rem;
-}
-.modal__button:hover{
+    }
+    .modal__button:hover{
     box-shadow: 0 0 5px #1D6154;
-}
-.modal__button--validate{
+    }
+    .modal__button--validate{
     background-color: #A7A7A7;
     width: 40%;
     margin-bottom: 2rem;
-}
-.modal__button--adding{
+    }
+    .modal__button--adding{
     background-color: #CBD6DC;
     margin-bottom: 0;
     padding: 0.5rem;
@@ -502,4 +476,30 @@ a {
     position: absolute;
     top: 55%;
     right: 35%;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

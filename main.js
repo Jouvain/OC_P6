@@ -8,7 +8,7 @@ const works = await reponse.json()
 // génération de la page
 module.generateGallery(works)
 if(storedToken === null){
-    generateFilterTags(works)
+    module.generateFilterTags(works)
 }
 module.revealEditMode(storedToken)
 
