@@ -136,7 +136,18 @@ export function revealEditMode(token){
 //création d'un set pour lister les catégories sans doublon puis ajoute en option
 export function generateSelectOptions(listeWorks){
     const categoriesSet = generateSet(listeWorks)
+    categoriesSet.forEach((element)=>{
+        if (element === "Tous"){
+            categoriesSet.delete(element)
+        }
+    })//effacer pour éviter cumuls à la répétition
     const formulaire = document.getElementById("category")
+    document.querySelectorAll("option").forEach((element)=>{
+        element.remove()
+    })
+    const option = document.createElement("option")
+    option.value = ""
+    formulaire.appendChild(option)
     categoriesSet.forEach((element) =>{
         const option = document.createElement("option")
         switch(element){//category = integer (cf swagger) donc besoin de chiffrer les valeurs

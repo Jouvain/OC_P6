@@ -22,12 +22,14 @@ const modalOpener = document.getElementById("OpenModal")
 modalOpener.addEventListener("click", () => {
     document.querySelector(".wrapper--modal").style.display = "flex"
     module.generateModalGallery(works)
+    module.wrapUnwrap(wrapperDeleteForm, "flex")
     document.querySelector(".modal__title").innerText="Galerie photo"
     document.querySelector(".modal__gallery").style.display = "grid"
 })
 const modalCloser = document.querySelector(".modal__quitIcon")
 modalCloser.addEventListener("click", ()=>{
     document.querySelector(".wrapper--modal").style.display = "none"
+    module.wrapUnwrap(wrapperPhotoForm, "none")
 })
 const photoFormOpener = document.getElementById("photoFormOpener")
 photoFormOpener.addEventListener("click", ()=>{
@@ -64,10 +66,24 @@ document.querySelector(".modal__button--validate").addEventListener("click", ()=
         body: formData,
     })
     .then((response)=>{
-        module.wrapUnwrap(wrapperPhotoForm, "none")
-        module.wrapUnwrap(wrapperDeleteForm, "flex")
-        document.querySelector(".modal__gallery").style.display = "grid"
-        return response.json()    
+        if(response.ok){
+            module.wrapUnwrap(wrapperPhotoForm, "none")
+            module.wrapUnwrap(wrapperDeleteForm, "flex")
+            document.querySelector(".modal__gallery").style.display = "grid"
+            return response.json()
+        }
+        else{
+            switch(response.status){
+                case 500:
+                    throw new Error("Quelque chose ne va pas. Il faut une image ET un titre ET une catégorie")
+                    
+                case 400:
+                    throw new Error("Il faut un titre ET une catégorie")
+                default:
+                    console.log(error)
+            }
+        }
+            
     })
     .then(async()=>{
         const newResponse = await fetch("http://localhost:5678/api/works")
