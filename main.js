@@ -5,6 +5,7 @@ const storedToken = window.localStorage.getItem("key")
 const reponse = await fetch("http://localhost:5678/api/works")
 let works = await reponse.json()
 
+
 // génération de la page
 module.generateGallery(works)
 if(storedToken === null){

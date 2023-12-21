@@ -336,8 +336,8 @@ footer nav ul {
     justify-content: center;
     position: relative;
     margin: 10rem;
-    height: 41rem;
-    width: 39rem;
+    height: 43rem;
+    width: 39.375rem;
     .modal__quitIcon{
     position: absolute;
     right: 2rem;
@@ -349,9 +349,11 @@ footer nav ul {
     top: 2rem;
     }
     .modal__title{
-    color: #1D6154;
-    font-size: 1.5rem;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    font-size: 1.625rem;
+    font-family: Work Sans;
+    font-weight: 400;
+    font-style: normal;
     margin-top: 3rem;
     }
     .modal__gallery{
@@ -360,15 +362,15 @@ footer nav ul {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 1rem;
     margin: 4rem;
-    border-bottom: solid 2px #1D6154;
+    border-bottom: solid 2px #B3B3B3;
     padding-bottom: 2rem;
     overflow-x:hidden;
         .modal__figure{
             position: relative;
             img {
                 object-fit: contain;
-                height: 6rem;
-                width: 4rem;
+                height: 6.505rem;
+                width: 4.882rem;
             } 
         }
     }
@@ -377,7 +379,7 @@ footer nav ul {
     width: 80%;
     margin: 4rem;
     margin-bottom: 2rem;
-    border-bottom: solid 2px #1D6154;
+    border-bottom: solid 2px #B3B3B3;
     padding-bottom: 1rem;
     display: none;
     flex-direction: column;
@@ -458,13 +460,16 @@ footer nav ul {
     padding: 1rem;
     transition: all 0.3s;
     margin-bottom: 2rem;
+    width: 14.812rem;
+    text-align: center;
+    justify-content: center;
     }
     .modal__button:hover{
     box-shadow: 0 0 5px #1D6154;
     }
     .modal__button--validate{
     background-color: #A7A7A7;
-    width: 40%;
+    width: 14.812rem;
     margin-bottom: 2rem;
     justify-content: center;
     }
